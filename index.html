@@ -1,10 +1,166 @@
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
     <title>Event Trigger Flow</title>
 </head>
+
 <body>
-    
+    <div class="shell">
+        <header class="header">
+            <h1>Event Trigger Flow</h1>
+            <p>Client on the left, services listening on the right. Emit events and watch who hears them.</p>
+        </header>
+
+        <section class="layout">
+            <div class="panel">
+                <div class="panel-head">
+                    <h2>Emit events</h2>
+                    <span class="tag">Client</span>
+                </div>
+                <details class="dropdown">
+                    <summary>
+                        <span>Events to emit</span>
+                        <span class="summary-count" data-summary="emit-count">0 selected</span>
+                    </summary>
+                    <div class="dropdown-body checkbox-list">
+                        <label class="checkbox">
+                            <input type="checkbox" class="emit-option" value="order_created" checked>
+                            <span>Order created</span>
+                        </label>
+                        <label class="checkbox">
+                            <input type="checkbox" class="emit-option" value="order_canceled" checked>
+                            <span>Order canceled</span>
+                        </label>
+                        <label class="checkbox">
+                            <input type="checkbox" class="emit-option" value="order_shipped">
+                            <span>Order shipped</span>
+                        </label>
+                        <label class="checkbox">
+                            <input type="checkbox" class="emit-option" value="refund_requested">
+                            <span>Refund requested</span>
+                        </label>
+                    </div>
+                </details>
+                <button type="button" id="emit-button">Emit selected</button>
+            </div>
+
+            <div class="wave-card" aria-hidden="true">
+                <div class="tower">
+                    <div class="wave"></div>
+                    <div class="wave wave-2"></div>
+                    <div class="wave wave-3"></div>
+                </div>
+            </div>
+
+            <div class="panel services-card">
+                <div class="panel-head">
+                    <h2>Services</h2>
+                    <span class="muted">Toggle what each listens to</span>
+                </div>
+                <div class="service" data-service-name="Analytics">
+                    <div class="service-title">Analytics</div>
+                    <details class="dropdown subscription-dropdown">
+                        <summary>
+                            <span>Subscriptions</span>
+                            <span class="summary-count">0 selected</span>
+                        </summary>
+                        <div class="dropdown-body checkbox-list">
+                            <label class="checkbox">
+                                <input type="checkbox" class="subscription-checkbox" value="order_created" checked>
+                                <span>Order created</span>
+                            </label>
+                            <label class="checkbox">
+                                <input type="checkbox" class="subscription-checkbox" value="order_canceled" checked>
+                                <span>Order canceled</span>
+                            </label>
+                            <label class="checkbox">
+                                <input type="checkbox" class="subscription-checkbox" value="order_shipped">
+                                <span>Order shipped</span>
+                            </label>
+                            <label class="checkbox">
+                                <input type="checkbox" class="subscription-checkbox" value="refund_requested">
+                                <span>Refund requested</span>
+                            </label>
+                        </div>
+                    </details>
+                    <div class="service-output muted">Waiting for events…</div>
+                </div>
+
+                <div class="service" data-service-name="Notifications">
+                    <div class="service-title">Notifications</div>
+                    <details class="dropdown subscription-dropdown">
+                        <summary>
+                            <span>Subscriptions</span>
+                            <span class="summary-count">0 selected</span>
+                        </summary>
+                        <div class="dropdown-body checkbox-list">
+                            <label class="checkbox">
+                                <input type="checkbox" class="subscription-checkbox" value="order_created" checked>
+                                <span>Order created</span>
+                            </label>
+                            <label class="checkbox">
+                                <input type="checkbox" class="subscription-checkbox" value="order_canceled" checked>
+                                <span>Order canceled</span>
+                            </label>
+                            <label class="checkbox">
+                                <input type="checkbox" class="subscription-checkbox" value="order_shipped" checked>
+                                <span>Order shipped</span>
+                            </label>
+                            <label class="checkbox">
+                                <input type="checkbox" class="subscription-checkbox" value="refund_requested">
+                                <span>Refund requested</span>
+                            </label>
+                        </div>
+                    </details>
+                    <div class="service-output muted">Waiting for events…</div>
+                </div>
+
+                <div class="service" data-service-name="Billing">
+                    <div class="service-title">Billing</div>
+                    <details class="dropdown subscription-dropdown">
+                        <summary>
+                            <span>Subscriptions</span>
+                            <span class="summary-count">0 selected</span>
+                        </summary>
+                        <div class="dropdown-body checkbox-list">
+                            <label class="checkbox">
+                                <input type="checkbox" class="subscription-checkbox" value="order_created" checked>
+                                <span>Order created</span>
+                            </label>
+                            <label class="checkbox">
+                                <input type="checkbox" class="subscription-checkbox" value="order_canceled">
+                                <span>Order canceled</span>
+                            </label>
+                            <label class="checkbox">
+                                <input type="checkbox" class="subscription-checkbox" value="order_shipped">
+                                <span>Order shipped</span>
+                            </label>
+                            <label class="checkbox">
+                                <input type="checkbox" class="subscription-checkbox" value="refund_requested" checked>
+                                <span>Refund requested</span>
+                            </label>
+                        </div>
+                    </details>
+                    <div class="service-output muted">Waiting for events…</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="panel">
+            <div class="panel-head">
+                <h2>Delivery log</h2>
+            </div>
+            <ul id="delivery-log" class="log-list">
+                <li class="muted">Nothing emitted yet.</li>
+            </ul>
+        </section>
+    </div>
+
+    <script src="index.js" defer></script>
 </body>
+
 </html>
